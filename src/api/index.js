@@ -31,7 +31,7 @@ export const fetchData = async (query) => {
 
 //Get country code
 export const getCountry = async () => {
-  const url = "http://ip-api.com/json";
+  const url = "https://freegeoip.app/json/"; //"http://ip-api.com/json";
   const res = await axios.get(url);
-  return res.data.countryCode.toLowerCase();
+  return res.data.country_code.toLowerCase();
 };

@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Card } from "./components";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { fetchData } from "./api";
+
+class App extends React.Component {
+  state = {
+    query: { what: "", where: "" },
+    jobs: {},
+    count: 0,
+  };
+
+  async componentDidMount() {
+    //console.log(this.state);
+    const { results, count, query } = await fetchData(this.state.query);
+    this.setState({ jobs: results, count, query });
+  }
+
+  handleSubmit = async (data1) => {
+    const { results, count, query } = await fetchData(data1);
+    this.setState({ jobs: results, count, query });
+  };
+
+  render() {
+    // } = this.state;
+    return (
+      <div>
+        <Card
+          jobs={this.state.jobs}
+          data={this.state.query}
+          count={this.state.count}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
+    );
+  }
 }
-
 export default App;

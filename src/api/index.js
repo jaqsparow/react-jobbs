@@ -6,9 +6,7 @@ const JOB_URL = process.env.REACT_APP_ADZUNA_URL;
 
 export const fetchData = async (query) => {
   let country = await getCountry();
-  if (!country) {
-    country = "us";
-  }
+
   if (!query.where) {
     query.where = country;
   }
@@ -32,7 +30,7 @@ export const fetchData = async (query) => {
 };
 
 //Get country code
-export const getCountry = async () => {
+const getCountry = async () => {
   const url = "https://freegeoip.app/json/"; //"http://ip-api.com/json";
   const res = await axios.get(url);
   return res.data.country_code.toLowerCase();

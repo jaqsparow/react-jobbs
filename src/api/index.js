@@ -6,12 +6,13 @@ const JOB_URL = process.env.REACT_APP_ADZUNA_URL;
 
 export const fetchData = async (query) => {
   let country = await getCountry();
-  if (!query.where) {
-    query.where = country;
-  }
   if (!country) {
     country = "us";
   }
+  if (!query.where) {
+    query.where = country;
+  }
+
   let url =
     JOB_URL +
     `${country}/search/1?app_id=${app_id}&app_key=${app_key}&what=${query.what}&where=${query.where}&results_per_page=20`;
@@ -23,6 +24,7 @@ export const fetchData = async (query) => {
     if (!Object.keys(results).length) {
       return { count, query };
     }
+
     return { results, count, query };
   } catch (error) {
     return error;

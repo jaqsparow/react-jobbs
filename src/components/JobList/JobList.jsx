@@ -5,6 +5,19 @@ const JobList = ({ jobs, data, count, country }) => {
   if (!count) {
     return "";
   }
+  const colorList = [
+    "red",
+    "green",
+    "purple",
+    "yellow",
+    "blue",
+    "indigo",
+    "pink",
+    "orange",
+  ];
+
+  const colorStyle = `text-${colorList[Math.floor(Math.random() * 7)]}-600`;
+  console.log(colorStyle);
   return (
     <div>
       <div className="m-2 text-3xl">
@@ -19,7 +32,11 @@ const JobList = ({ jobs, data, count, country }) => {
             return (
               <li key={index} className="block p-4 border bg-gray-100">
                 <div className="space-x-4">
-                  <div className="inline-block text-purple-600 text-xl">
+                  <div
+                    className={`inline-block bg-${
+                      colorList[Math.floor(Math.random() * 7)]
+                    }-300 text-xl`}
+                  >
                     <div dangerouslySetInnerHTML={{ __html: job.title }}></div>
                   </div>
                   <div className="inline-block italic">{`Location: ${job.location.display_name}`}</div>
@@ -39,7 +56,11 @@ const JobList = ({ jobs, data, count, country }) => {
                     Apply job
                   </a>
                 </div>
-                <p>{`Company: ${job.company.display_name}`}</p>
+                <p
+                  className={`text-${
+                    colorList[Math.floor(Math.random() * 7)]
+                  }-600`}
+                >{`Company: ${job.company.display_name}`}</p>
                 <p>{`Posted On: ${job.created.substring(0, 10)}`}</p>
               </li>
             );

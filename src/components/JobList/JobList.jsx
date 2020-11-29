@@ -17,7 +17,6 @@ const JobList = ({ jobs, data, count, country }) => {
   ];
 
   const colorStyle = `text-${colorList[Math.floor(Math.random() * 7)]}-600`;
-  console.log(colorStyle);
   return (
     <div>
       <div className="m-2 text-3xl">

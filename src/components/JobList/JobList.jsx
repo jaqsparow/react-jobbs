@@ -1,16 +1,16 @@
 import React from "react";
 import CountUp from "react-countup";
 
-const JobList = ({ jobs, data, count }) => {
+const JobList = ({ jobs, data, count, country }) => {
   if (!count) {
-    return "Loading..";
+    return "";
   }
   return (
     <div>
       <div className="m-2 text-3xl">
         <h2>
           <CountUp start={0} end={count} duration={2} separator="," />
-          {` ${data.what} jobs found in ${data.where}`}
+          {` ${data.what} jobs found in ${data.where || country.name}`}
         </h2>
       </div>
       <ol className="space-y-4">

@@ -4,21 +4,18 @@ const app_key = process.env.REACT_APP_ADZUNA_KEY;
 const app_id = process.env.REACT_APP_ADZUNA_APP_ID;
 const JOB_URL = process.env.REACT_APP_ADZUNA_URL;
 
-export const fetchData = async (query) => {
-  let country = await getCountry();
-
-  if (!query.where) {
-    query.where = country;
+export const fetchJobs = async (country, query) => {
+  if (!country.code) {
+    country = await fetchCountry();
   }
-
   let url =
     JOB_URL +
-    `${country}/search/1?app_id=${app_id}&app_key=${app_key}&what=${query.what}&where=${query.where}&results_per_page=20`;
-
+    `${country.code}/search/1?app_id=${app_id}&app_key=${app_key}&what=${query.what}&where=${query.where}&results_per_page=20`;
   try {
     const {
       data: { results, count },
     } = await axios.get(url);
+
     if (!Object.keys(results).length) {
       return { count, query };
     }
@@ -30,8 +27,10 @@ export const fetchData = async (query) => {
 };
 
 //Get country code
-const getCountry = async () => {
+export const fetchCountry = async () => {
   const url = "https://freegeoip.app/json/"; //"http://ip-api.com/json";
-  const res = await axios.get(url);
-  return res.data.country_code.toLowerCase();
+  const {
+    data: { country_code, country_name },
+  } = await axios.get(url);
+  return { code: country_code.toLowerCase(), name: country_name };
 };

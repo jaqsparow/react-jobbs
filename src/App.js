@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Logo, JobList, JobForm } from "./components";
+import { Logo, JobList, JobForm, Credit } from "./components";
 import { fetchJobs, fetchCountry } from "./api";
 
 export default function App() {
@@ -26,6 +26,7 @@ export default function App() {
     <div className="sm:mx-w-sm md:mx-w-lg max-w-4xl p-4 mx-auto">
       <Logo />
       <JobForm handleSubmit={handleSubmit} />
+      <Credit />
       <JobList jobs={jobs} data={query} count={count} country={country} />
     </div>
   );

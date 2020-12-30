@@ -18,7 +18,7 @@ const JobList = ({ jobs, data, count, country }) => {
 
   return (
     <div>
-      <div className="m-2 text-3xl">
+      <div className="m-2 text-3xl text-purple-500">
         <h2>
           <CountUp start={0} end={count} duration={2} separator="," />
           {` ${data.what} jobs found in ${data.where || country.name}`}

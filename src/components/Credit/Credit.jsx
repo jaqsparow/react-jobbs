@@ -1,9 +1,10 @@
 import React from "react";
 const Credit = () => {
+  const YEAR = new Date().getFullYear();
   return (
     <React.Fragment>
       <div className="flex justify-center text-sm text-gray-500">
-        <p className="px-2">© 2020 Jobbs.info</p>
+        <p className="px-2">{`© ${YEAR} Jobbs.info`}</p>
         <p className="px-2">Contact me at</p>
 
         <a

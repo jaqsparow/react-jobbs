@@ -9,7 +9,7 @@ const Credit = () => {
 
         <a
           className=""
-          href="https://twitter.com/jaqsparow"
+          href="https://github.com/jaqsparow"
           target="_blank"
           rel="noreferrer"
         >
